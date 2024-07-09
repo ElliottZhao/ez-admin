@@ -11,6 +11,6 @@ const {
     <p>status: {{ status }}</p>
     <p>data: {{ data }}</p>
     <p>lastRefreshedAt: {{ lastRefreshedAt }}</p>
-    <button v-if="status === 'authenticated'" @click="signOut({callbackUrl: '/login'})">signOut</button>
+    <button v-if="status === 'authenticated'" @click="signOut({callbackUrl: '/login'})">{{$t('signOut')}}</button>
   </div>
 </template>

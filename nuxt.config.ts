@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  modules: ["@sidebase/nuxt-auth", "@prisma/nuxt"],
+  modules: ["@sidebase/nuxt-auth", "@prisma/nuxt", "@nuxtjs/i18n"],
   runtimeConfig: {
     authSecret: 'AUTH_SECRET'
   },
@@ -10,8 +10,5 @@ export default defineNuxtConfig({
       provider: {
           type: 'authjs'
       }
-  },
-  prisma: {
-    autoSetupPrisma: false,
   }
 })
