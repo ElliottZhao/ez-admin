@@ -1,0 +1,31 @@
+diff --git a/node_modules/@prisma/nuxt/dist/module.mjs b/node_modules/@prisma/nuxt/dist/module.mjs
+index 1e99dd6..db38891 100644
+--- a/node_modules/@prisma/nuxt/dist/module.mjs
++++ b/node_modules/@prisma/nuxt/dist/module.mjs
+@@ -1,4 +1,4 @@
+-import { defineNuxtModule, createResolver, addPlugin, addImportsDir, addServerScanDir } from '@nuxt/kit';
++import { defineNuxtModule, createResolver, addPlugin, addImportsDir, addServerImportsDir } from '@nuxt/kit';
+ import { fileURLToPath } from 'url';
+ import defu from 'defu';
+ import prompts from 'prompts';
+@@ -281,7 +281,8 @@ async function installStudio(directory) {
+     const { spawn } = require("child_process");
+     log(PREDEFINED_LOG_MESSAGES.installStudio.action);
+     await spawn("npx", ["prisma", "studio", "--browser", "none"], {
+-      cwd: directory
++      cwd: directory,
++      shell: true
+     });
+     logSuccess(PREDEFINED_LOG_MESSAGES.installStudio.success);
+     return true;
+@@ -360,9 +361,7 @@ const module = defineNuxtModule({
+       nuxt.options.experimental.componentIslands = true;
+       addPlugin(resolver("./runtime/plugin"));
+       addImportsDir(resolver(runtimeDir, "composables"));
+-      addServerScanDir(
+-        createResolver(import.meta.url).resolve("./runtime/server")
+-      );
++      addServerImportsDir(resolver(runtimeDir, "utils"));
+       nuxt.options.vite.optimizeDeps ||= {};
+       nuxt.options.vite.optimizeDeps = {
+         include: ["@prisma/nuxt > @prisma/client"]
