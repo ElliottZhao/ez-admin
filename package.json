@@ -14,14 +14,20 @@
     "@nuxtjs/i18n": "^8.3.1",
     "@prisma/nuxt": "^0.0.30",
     "@sidebase/nuxt-auth": "^0.8.0",
+    "naive-ui": "^2.38.2",
     "nuxt": "^3.12.3",
+    "nuxtjs-naive-ui": "^1.0.2",
     "vue": "latest"
   },
   "devDependencies": {
+    "@nuxtjs/tailwindcss": "^6.12.0",
     "@prisma/client": "^5.16.2",
     "@types/bun": "latest",
     "patch-package": "^8.0.0",
-    "prisma": "^5.16.1"
+    "prisma": "^5.16.1",
+    "sass": "^1.77.7",
+    "unplugin-auto-import": "^0.17.6",
+    "unplugin-vue-components": "^0.27.2"
   },
   "module": "index.ts",
   "peerDependencies": {
