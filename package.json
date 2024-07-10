@@ -18,7 +18,7 @@
     "vue": "latest"
   },
   "devDependencies": {
-    "@prisma/client": "^5.16.1",
+    "@prisma/client": "^5.16.2",
     "@types/bun": "latest",
     "patch-package": "^8.0.0",
     "prisma": "^5.16.1"

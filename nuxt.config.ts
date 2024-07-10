@@ -10,5 +10,17 @@ export default defineNuxtConfig({
       provider: {
           type: 'authjs'
       }
+  },
+  i18n:{
+    locales: [
+      {
+        code: 'en-us',
+        name: 'English'
+      },
+      {
+        code: 'zh-cn',
+        name: '汉语'
+      }
+    ],
   }
 })

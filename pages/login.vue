@@ -7,14 +7,20 @@ definePageMeta({
     layout: 'page',
 })
 const { signIn } = useAuth()
-const { setLocale } = useI18n()
+const { locale, locales } = useI18n()
+const switchLocalePath = useSwitchLocalePath()
+
+const availableLocales = computed(() => {
+  return locales.value.filter(i => i.code !== locale.value)
+})
 </script>
 
 <template>
   <div>
-    <button @click="setLocale('en')">{{$t('en')}}</button>
-    <button @click="setLocale('zh')">{{$t('zh')}}</button>
-    <p>{{$t('signInOptions')}}:</p>
-    <button @click="signIn('credentials', { username: 'admin', password: 'admin', callbackUrl: '/' })">{{$t('signInWithCredentials')}}</button>
+    <NuxtLink v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)">
+      {{ locale.name }}
+    </NuxtLink>
+    <p>{{$t('pages.login.signInOptions')}}:</p>
+    <button @click="signIn('credentials', { username: 'admin', password: 'admin', callbackUrl: '/' })">{{$t('pages.login.signInWithCredentials')}}</button>
   </div>
 </template>
