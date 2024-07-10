@@ -14,11 +14,13 @@ export default defineNuxtConfig({
   i18n:{
     locales: [
       {
-        code: 'en-us',
+        code: 'en',
+        iso: 'en-US',
         name: 'English'
       },
       {
-        code: 'zh-cn',
+        code: 'zh',
+        iso: 'zh-CN',
         name: '汉语'
       }
     ],

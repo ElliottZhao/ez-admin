@@ -1,6 +1,6 @@
 export default defineI18nConfig(() => ({
   messages: {
-    'en-us': {
+    'en': {
       layouts: {
         title: 'EZ Admin',
           signOut: 'Sign-Out',
@@ -15,14 +15,14 @@ export default defineI18nConfig(() => ({
         }
       },
     },
-    'zh-cn': {
+    'zh': {
       layouts: {
         title: 'EZ 中后台',
         signOut: '登出',
       },
       pages: {
         title: {
-          home: 'Home page'
+          home: '首页'
         },
         login: {
           signInOptions: '登录选项',
