@@ -2,18 +2,12 @@
 definePageMeta({
   title: 'pages.title.dashboard',
 });
-const { status, data, lastRefreshedAt, signOut } = useAuth();
+const { status, data, lastRefreshedAt } = useAuth();
 </script>
 <template>
   <div>
     <p>status: {{ status }}</p>
     <p>data: {{ data }}</p>
     <p>lastRefreshedAt: {{ lastRefreshedAt }}</p>
-    <n-button
-      v-if="status === 'authenticated'"
-      @click="signOut({ callbackUrl: '/login' })"
-    >
-      {{ $t('layouts.signOut') }}
-    </n-button>
   </div>
 </template>

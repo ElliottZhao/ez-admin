@@ -48,6 +48,8 @@ const naiveLocales: Record<
       <n-config-provider
         :locale="naiveLocales[locale]?.locale"
         :date-locale="naiveLocales[locale]?.dateLocale"
+        abstract
+        inline-theme-disabled
       >
         <slot />
       </n-config-provider>
