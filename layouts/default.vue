@@ -41,12 +41,20 @@ const dropdownOptions = [
         },
         [
           h(NAvatar, {}, 'A'),
-          h('div', {
-            class: 'flex flex-col'
-          }, [
-            h(NText, { depth: 2 }, { default: () => 'Admin' }),
-            h(NText, { depth: 3, class: 'text-sm' }, { default: () => '系统管理员' }),
-          ]),
+          h(
+            'div',
+            {
+              class: 'flex flex-col',
+            },
+            [
+              h(NText, { depth: 2 }, { default: () => 'Admin' }),
+              h(
+                NText,
+                { depth: 3, class: 'text-sm' },
+                { default: () => '系统管理员' }
+              ),
+            ]
+          ),
         ]
       ),
   },
@@ -62,7 +70,7 @@ const availableLocales = computed(() => {
 const dropdownSelect = (key: string) => {
   switch (key) {
     case 'signOut':
-      signOut({ callbackUrl: localePath('/signIn', locale.value) });
+      signOut({ callbackUrl: localePath('/auth/signin', locale.value) });
       break;
   }
 };
@@ -90,37 +98,47 @@ const dropdownSelect = (key: string) => {
         abstract
         inline-theme-disabled
       >
-        <n-layout has-sider class="h-screen">
-          <n-layout-sider content-class="p-4"> 侧栏 </n-layout-sider>
-          <n-layout content-class="h-full flex flex-col">
-            <n-layout-header class="p-4 flex items-center justify-between">
-              <div></div>
-              <div class="flex items-center gap-2">
-                <NuxtLink
-                  v-for="locale in availableLocales"
-                  :key="locale.code"
-                  :to="switchLocalePath(locale.code)"
-                >
-                  {{ locale.name }}
-                </NuxtLink>
-                <n-dropdown
-                  trigger="hover"
-                  :options="dropdownOptions"
-                  @select="dropdownSelect"
-                >
+        <n-notification-provider>
+          <n-message-provider>
+            <n-layout has-sider class="h-screen">
+              <n-layout-sider content-class="p-4"> 侧栏 </n-layout-sider>
+              <n-layout content-class="h-full flex flex-col">
+                <n-layout-header class="p-4 flex items-center justify-between">
+                  <div></div>
                   <div class="flex items-center gap-2">
-                    <n-avatar size="small">A</n-avatar>
-                    <span>{{ $t('layouts.welcome', { name: 'Admin' }) }}</span>
+                    <NuxtLink
+                      v-for="locale in availableLocales"
+                      :key="locale.code"
+                      :to="switchLocalePath(locale.code)"
+                    >
+                      {{ locale.name }}
+                    </NuxtLink>
+                    <n-dropdown
+                      trigger="hover"
+                      :options="dropdownOptions"
+                      @select="dropdownSelect"
+                    >
+                      <div class="flex items-center gap-2">
+                        <n-avatar size="small">A</n-avatar>
+                        <span>{{
+                          $t('layouts.welcome', { name: 'Admin' })
+                        }}</span>
+                      </div>
+                    </n-dropdown>
                   </div>
-                </n-dropdown>
-              </div>
-            </n-layout-header>
-            <n-layout-content content-class="p-4">
-              <slot />
-            </n-layout-content>
-            <n-layout-footer class="p-4 flex items-center justify-center"><span class="text-sm text-gray-500">Elliott Zhao@2024</span></n-layout-footer>
-          </n-layout>
-        </n-layout>
+                </n-layout-header>
+                <n-layout-content content-class="p-4">
+                  <slot />
+                </n-layout-content>
+                <n-layout-footer class="p-4 flex items-center justify-center"
+                  ><span class="text-sm text-gray-500"
+                    >Elliott Zhao@2024</span
+                  ></n-layout-footer
+                >
+              </n-layout>
+            </n-layout>
+          </n-message-provider>
+        </n-notification-provider>
       </n-config-provider>
     </Body>
   </Html>

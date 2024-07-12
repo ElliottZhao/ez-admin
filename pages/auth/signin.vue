@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { FormInst } from 'naive-ui';
 
+const localePath = useLocalePath();
+
 definePageMeta({
   auth: {
     unauthenticatedOnly: true,
@@ -9,9 +11,9 @@ definePageMeta({
   layout: 'page',
   title: 'pages.title.login',
 });
+
 const { signIn } = useAuth();
 const { t, locale, locales } = useI18n();
-const localePath = useLocalePath();
 const switchLocalePath = useSwitchLocalePath();
 
 const availableLocales = computed(() => {
@@ -37,13 +39,20 @@ const rules = {
 };
 const formRef = ref<FormInst | null>();
 
+const message = useMessage();
+
 const submit = async () => {
   const validate = await formRef.value?.validate();
   if (!validate?.warnings) {
-    signIn('credentials', {
+    const { error } = (await signIn('credentials', {
       ...form.value,
-      callbackUrl: localePath('/', locale.value),
-    });
+      redirect: false,
+    })) as { error: string; url: string };
+    if (error) {
+      message.error(error);
+    } else {
+      navigateTo(localePath('/', locale.value), { external: true });
+    }
   }
 };
 </script>

@@ -17,7 +17,7 @@ export default NuxtAuthHandler({
           console.error('Warning: Malicious login attempt registered, bad credentials provided')
           return null
         }
-      }
+      },
     })
   ]
 })

@@ -51,7 +51,11 @@ const naiveLocales: Record<
         abstract
         inline-theme-disabled
       >
-        <slot />
+        <n-notification-provider>
+          <n-message-provider>
+            <slot />
+          </n-message-provider>
+        </n-notification-provider>
       </n-config-provider>
     </Body>
   </Html>
